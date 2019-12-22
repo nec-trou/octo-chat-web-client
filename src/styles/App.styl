@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+$primary-background-color = black
+$primary-text-color = white
+$accent-color = $primary-text-color
+$primary-font = Roboto, sans-serif
+
+* 
+  padding: 0
+  margin: 0
+
+body, html 
+  height 100%
+
+.login-form
+  display flex
+  flex-direction column
+  justify-content center
+  align-items center
+  height 100vh
+  background-color $primary-background-color
+  font-family $primary-font
+  &__input
+    border 0
+    border-bottom 2px solid $accent-color
+    width 60%
+    font-size 30px
+    line-height 35px
+    height 70px
+    text-align center
+    padding 10px
+    background transparent
+    color $accent-color
+    &:focus
+      outline none
