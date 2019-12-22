@@ -11,6 +11,17 @@ $primary-font = Roboto, sans-serif
 
 body, html 
   height 100%
+  font-family $primary-font
+
+
+.btn
+  border 0
+  background transparent
+  border 2px solid $accent-color
+  height 70px
+  width 30%
+  margin-top 50px
+  color $primary-text-color
 
 .login-form
   display flex
@@ -19,7 +30,7 @@ body, html
   align-items center
   height 100vh
   background-color $primary-background-color
-  font-family $primary-font
+
   &__input
     border 0
     border-bottom 2px solid $accent-color

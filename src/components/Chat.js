@@ -15,7 +15,6 @@ class Chat extends Component {
       currentUser: '',
       messagesList: [],
     }
-
     this.onLoginFormSumbit = this.onLoginFormSumbit.bind(this)
   }
 
@@ -37,7 +36,7 @@ class Chat extends Component {
             <SendMessageForm />
           </div>
         ) : (
-          <LoginForm onSubmbit={this.onLoginFormSumbit} />
+          <LoginForm onSubmit={this.onLoginFormSumbit} />
         )}
       </React.Fragment>
     )

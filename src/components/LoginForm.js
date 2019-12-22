@@ -22,22 +22,25 @@ class LoginForm extends Component {
   submitUsername(event) {
     event.preventDefault()
     const { currentUsername } = this.state
-    const { onLoginFormSubmit } = this.props
+    const { onSubmit } = this.props
 
-    onLoginFormSubmit(currentUsername)
+    onSubmit(currentUsername)
   }
 
   render() {
     return (
-      <form className="login-form">
+      <form onSubmit={this.submitUsername} className="login-form">
         <input
           className="login-form__input"
           type="input"
           name="login-form__input"
           value={this.state.currentUsername}
-          onInput={this.handleInput}
+          onChange={this.handleInput}
           placeholder="Введи свой ник и нажми Enter"
         />
+        <button type="submit" className="btn btn-login-submit">
+          Войти в чат
+        </button>
       </form>
     )
   }
