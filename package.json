@@ -1,7 +1,7 @@
 {
   "name": "octo-chat-web-client",
   "version": "1.0.0",
-  "description": "Simple Chat Web Client",
+  "description": "Simple Real Time Chat",
   "author": "nec-trou",
   "license": "ISC",
   "main": "index.js",

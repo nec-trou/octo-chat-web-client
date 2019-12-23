@@ -6,7 +6,8 @@ import MessageList from './MessageList'
 import SendMessageForm from './SendMessageForm'
 
 // const socket = io.connect("http://localhost:3000");
-const socket = io.connect('https://vast-reef-17627.herokuapp.com/')
+// const socket = io.connect('https://vast-reef-17627.herokuapp.com/')
+const socket = io.connect('https://octo-chat.herokuapp.com/')
 
 class Chat extends Component {
   constructor() {
