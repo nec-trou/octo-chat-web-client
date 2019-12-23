@@ -5,21 +5,29 @@ const http = require('http').createServer(app)
 const io = require('socket.io')(http)
 let users = 0
 
-app.use(express.static(path.join(__dirname, '../build')))
+app.use(express.static(__dirname + '/dist'))
 
-app.get('/', (req, res) => res.sendFile(__dirname + '/dist/index.html'))
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, 'index.html'))
+})
 
-io.on('connect', socket => {
+io.on('connection', client => {
+  const id = client.id
   users++
-  io.emit('broadcast', `Client #${users} connected!`)
+  console.log(`Total connected clients: ${users}`)
 
-  socket.on('message', msg => {
-    io.emit('message', msg)
+  client.on('join', name => {
+    console.log(`Client ${id} have chosen name ${name}`)
   })
 
-  socket.on('disconnect', function() {
+  client.on('message', ({ nickname, msg }) => {
+    console.log(`${nickname} said ${msg}`)
+    io.emit('message', { nickname, msg })
+  })
+
+  client.on('disconnect', () => {
     users--
-    io.emit('broadcast', `Client disconnected. ${users} left`)
+    console.log(`Client ${id} disconnected. Users left: ${users}`)
   })
 })
 
