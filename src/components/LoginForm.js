@@ -23,7 +23,6 @@ class LoginForm extends Component {
     event.preventDefault()
     const { currentUsername } = this.state
     const { onSubmit } = this.props
-
     onSubmit(currentUsername)
   }
 

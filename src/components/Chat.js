@@ -13,15 +13,33 @@ class Chat extends Component {
     super()
     this.state = {
       currentUser: '',
-      messagesList: [],
+      messageList: [],
     }
     this.onLoginFormSumbit = this.onLoginFormSumbit.bind(this)
+    this.onMessageFormSubmit = this.onMessageFormSubmit.bind(this)
+  }
+
+  componentDidMount() {
+    socket.on('message', ({ nickname, msg }) => {
+      this.setState({
+        messageList: this.state.messageList.concat([{ nickname, msg }]),
+      })
+    })
   }
 
   onLoginFormSumbit(currentUser) {
     this.setState({
       currentUser,
     })
+    socket.emit('join', currentUser)
+  }
+
+  onMessageFormSubmit(msg) {
+    const { currentUser } = this.state
+    this.setState({
+      currentUser,
+    })
+    socket.emit('message', { nickname: currentUser, msg })
   }
 
   render() {
@@ -29,16 +47,19 @@ class Chat extends Component {
     const isLoggedIn = currentUser !== ''
 
     return (
-      <React.Fragment>
+      <div className="chat">
         {isLoggedIn ? (
-          <div>
-            <MessageList />
-            <SendMessageForm />
+          <div className="messenger">
+            <MessageList
+              messageList={this.state.messageList}
+              currentUser={this.state.currentUser}
+            />
+            <SendMessageForm onSubmit={this.onMessageFormSubmit} />
           </div>
         ) : (
           <LoginForm onSubmit={this.onLoginFormSumbit} />
         )}
-      </React.Fragment>
+      </div>
     )
   }
 }
