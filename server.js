@@ -18,6 +18,7 @@ io.on('connection', client => {
 
   client.on('join', name => {
     console.log(`Client ${id} have chosen name ${name}`)
+    io.emit('message', { name })
   })
 
   client.on('message', ({ nickname, msg }) => {
