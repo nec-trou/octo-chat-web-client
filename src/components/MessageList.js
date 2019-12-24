@@ -17,7 +17,7 @@ const MessageList = props => {
           />
         )
       case 'info':
-        return <InfoMessage key={idx} text={msg} />
+        return <InfoMessage key={idx} nickname={nickname} text={msg} />
       default:
         return (
           <Message
