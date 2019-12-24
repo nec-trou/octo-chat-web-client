@@ -37,9 +37,6 @@ class Chat extends Component {
 
   onMessageFormSubmit(msg) {
     const { currentUser } = this.state
-    this.setState({
-      currentUser,
-    })
     socket.emit('message', { nickname: currentUser, msg })
   }
 
