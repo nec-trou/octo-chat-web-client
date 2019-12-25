@@ -8,6 +8,7 @@ let users = 0
 app.use(express.static(__dirname + '/dist'))
 
 app.get('*', (req, res) => {
+  res.setHeader('Set-Cookie', 'HttpOnly;Secure;SameSite=Strict')
   res.sendFile(path.resolve(__dirname, 'index.html'))
 })
 

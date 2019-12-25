@@ -6,6 +6,7 @@ const MessageList = props => {
   const { messageList, currentUser } = props
 
   const chat = messageList.map(({ nickname, msg, type }, idx) => {
+    console.log(type)
     if (type === 'info') {
       return <InfoMessage key={idx} nickname={nickname} text={msg} />
     } else {

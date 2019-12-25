@@ -22,9 +22,9 @@ class Chat extends Component {
   }
 
   componentDidMount() {
-    socket.on('message', ({ nickname, msg }) => {
+    socket.on('message', ({ nickname, msg, type }) => {
       this.setState({
-        messageList: this.state.messageList.concat([{ nickname, msg }]),
+        messageList: this.state.messageList.concat([{ nickname, msg, type }]),
       })
     })
   }
@@ -38,7 +38,7 @@ class Chat extends Component {
 
   onMessageFormSubmit(msg) {
     const { currentUser } = this.state
-    socket.emit('message', { nickname: currentUser, msg })
+    socket.emit('message', { nickname: currentUser, msg, type: 'normal' })
   }
 
   render() {
