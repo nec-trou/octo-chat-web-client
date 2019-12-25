@@ -18,12 +18,12 @@ io.on('connection', client => {
 
   client.on('join', name => {
     console.log(`Client ${id} have chosen name ${name}`)
-    io.emit('message', { nickname: name, msg: 'joined' })
+    io.emit('message', { nickname: name, msg: 'joined', type: 'info' })
   })
 
   client.on('message', ({ nickname, msg }) => {
     console.log(`${nickname} said ${msg}`)
-    io.emit('message', { nickname, msg })
+    io.emit('message', { nickname, msg, type: 'normal' })
   })
 
   client.on('disconnect', () => {

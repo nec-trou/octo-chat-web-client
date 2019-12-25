@@ -16,6 +16,7 @@ class Chat extends Component {
       currentUser: '',
       messageList: [],
     }
+
     this.onLoginFormSumbit = this.onLoginFormSumbit.bind(this)
     this.onMessageFormSubmit = this.onMessageFormSubmit.bind(this)
   }
