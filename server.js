@@ -21,7 +21,9 @@ io.on('connection', client => {
   client.on('join', name => {
     console.log(`Client ${id} have chosen name ${name}`)
     usersOnline.set(id, name)
-    io.emit('message', { nickname: name, msg: 'joined', type: 'info' })
+    if (nickname) {
+      io.emit('message', { nickname: name, msg: 'joined', type: 'info' })
+    }
   })
 
   client.on('message', ({ nickname, msg }) => {
