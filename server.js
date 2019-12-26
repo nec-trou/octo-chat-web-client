@@ -4,6 +4,7 @@ const app = express()
 const http = require('http').createServer(app)
 const io = require('socket.io')(http)
 let users = 0
+const usersOnline = new Map()
 
 app.use(express.static(__dirname + '/dist'))
 
@@ -19,6 +20,7 @@ io.on('connection', client => {
 
   client.on('join', name => {
     console.log(`Client ${id} have chosen name ${name}`)
+    usersOnline.set(id, name)
     io.emit('message', { nickname: name, msg: 'joined', type: 'info' })
   })
 
@@ -30,7 +32,8 @@ io.on('connection', client => {
   client.on('disconnect', () => {
     users--
     console.log(`Client ${id} disconnected. Users left: ${users}`)
-    io.emit('message', { nickname, msg: 'disconnected', type: 'normal' })
+    const nickname = usersOnline.get(id)
+    io.emit('message', { nickname, msg: 'disconnected', type: 'info' })
   })
 })
 
