@@ -30,6 +30,7 @@ io.on('connection', client => {
   client.on('disconnect', () => {
     users--
     console.log(`Client ${id} disconnected. Users left: ${users}`)
+    io.emit('message', { nickname, msg: 'disconnected', type: 'normal' })
   })
 })
 

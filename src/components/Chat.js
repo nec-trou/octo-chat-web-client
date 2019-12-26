@@ -5,8 +5,6 @@ import LoginForm from './LoginForm'
 import MessageList from './MessageList'
 import SendMessageForm from './SendMessageForm'
 
-// const socket = io.connect("http://localhost:3000");
-// const socket = io.connect('https://vast-reef-17627.herokuapp.com/')
 const socket = io.connect('https://octo-chat0710036033.herokuapp.com/')
 
 class Chat extends Component {
@@ -17,7 +15,7 @@ class Chat extends Component {
       messageList: [],
     }
 
-    this.onLoginFormSumbit = this.onLoginFormSumbit.bind(this)
+    this.onLoginFormSubmit = this.onLoginFormSubmit.bind(this)
     this.onMessageFormSubmit = this.onMessageFormSubmit.bind(this)
   }
 
@@ -29,7 +27,7 @@ class Chat extends Component {
     })
   }
 
-  onLoginFormSumbit(currentUser) {
+  onLoginFormSubmit(currentUser) {
     this.setState({
       currentUser,
     })
@@ -56,7 +54,7 @@ class Chat extends Component {
             <SendMessageForm onSubmit={this.onMessageFormSubmit} />
           </div>
         ) : (
-          <LoginForm onSubmit={this.onLoginFormSumbit} />
+          <LoginForm onSubmit={this.onLoginFormSubmit} />
         )}
       </div>
     )
