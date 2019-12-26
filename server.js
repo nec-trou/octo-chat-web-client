@@ -33,7 +33,10 @@ io.on('connection', client => {
     users--
     console.log(`Client ${id} disconnected. Users left: ${users}`)
     const nickname = usersOnline.get(id)
-    io.emit('message', { nickname, msg: 'disconnected', type: 'info' })
+    usersOnline.delete(id)
+    if (nickname != '') {
+      io.emit('message', { nickname, msg: 'disconnected', type: 'info' })
+    }
   })
 })
 
